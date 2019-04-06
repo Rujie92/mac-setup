@@ -38,6 +38,11 @@ install_mas() {
     fi
 }
 
+install_tools() {
+    install_homebrew()
+    install_mas()
+}
+
 # 检查是否已安装某软件包
 check_installation() {
   if [[ $type == "cli" ]]; then
@@ -128,8 +133,8 @@ mas_install() {
 echo
 echo "🙏  请花2秒时间看一下上述注意事项"
 sleep 2s
-install_homebrew
-install_mas
 
-mas_install
+install_tools()
+
+install_softwares()
 
