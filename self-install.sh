@@ -21,6 +21,22 @@ install_homebrew() {
   fi
 }
 
+install_mas() {
+    if `command -v mas > /dev/null 2>&1`; then
+        echo '👌  mas已安装'
+    else
+        echo '🍼  正在安装mas'
+
+        brew install mas
+
+        if [[ $? -eq 0  ]]; then
+            echo '🍻  mas安装成功'
+        else
+            echo '🚫  mas安装失败，请检查网络连接...'
+        exit 127
+        fi
+    fi
+}
 
 # 检查是否已安装某软件包
 check_installation() {
@@ -102,10 +118,6 @@ locate() {
   tmp=`expr $1 % 3`
   [ $tmp -eq 0 ] && tmp=3
   column_number=`expr $tmp \* 3 - 1`
-}
-
-install_mas() {
-    brew install mas
 }
 
 mas_install() {
